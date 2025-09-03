@@ -1,5 +1,7 @@
-# Vue 3 + TypeScript + Vite
+# Project overview
+This project will include basic features such as user authentication, user profiles and articles.
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+### DAY1
+* This project is built to help me practice my skills in builting UIs and working on API connectivity between frontend and backend.
+* The entire process will be shown here to encourage me to finish this project.
