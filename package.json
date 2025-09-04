@@ -15,11 +15,17 @@
     "test:cov": "vitest run --coverage"
   },
   "lint-staged": {
-    "*.{ts,tsx,vue,js}": ["eslint --fix", "prettier -w"],
-    "*.{css,scss,md}": ["prettier -w"]
+    "*.{ts,tsx,vue,js}": [
+      "eslint --fix",
+      "prettier -w"
+    ],
+    "*.{css,scss,md}": [
+      "prettier -w"
+    ]
   },
   "dependencies": {
     "axios": "^1.11.0",
+    "element-plus": "^2.11.1",
     "pinia": "^3.0.3",
     "vue": "^3.5.18",
     "vue-router": "^4.5.1"

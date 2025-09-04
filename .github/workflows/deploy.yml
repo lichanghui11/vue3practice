@@ -1,0 +1,59 @@
+# 这份 CI 做了：安装 → Lint → 类型检查 → 测试 → 构建 → 可选上传产物。
+# 工作流名字（在 GitHub Actions UI 里显示）
+name: CI
+
+# 触发条件
+on:
+  pull_request:       # 每当有人提 PR 时触发
+  push:               # 当代码 push 到 main 分支时触发
+    branches: [main]
+
+jobs:
+  # 定义一个名为 build-and-test 的 Job
+  build-and-test:
+    # 使用 GitHub 提供的 Ubuntu 虚拟机
+    runs-on: ubuntu-latest
+
+    # 并发设置：同一分支的流水线同时只保留最后一次
+    concurrency:
+      group: ci-${{ github.ref }}    # 分组：分支名
+      cancel-in-progress: true       # 如果有新任务，自动取消旧任务
+
+    steps:
+      # 第一步：检出代码（相当于 git clone）
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # 第二步：安装 pnpm
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10   # 指定 pnpm 版本
+
+      # 第三步：安装 Node.js
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22  # Node 版本
+          cache: 'pnpm'     # 启用 pnpm 缓存，加快安装速度
+
+      # 第四步：安装依赖
+      - name: Install deps
+        run: pnpm install --frozen-lockfile
+        # --frozen-lockfile 表示必须严格按照 lockfile 安装，保证一致性
+
+      # 第五步：代码检查（ESLint）
+      - name: Lint
+        run: pnpm lint
+
+      # 第六步：类型检查（TypeScript）
+      - name: Type check
+        run: pnpm type-check
+
+      # 第七步：运行单元测试和组件测试（Vitest）
+      - name: Unit & component tests
+        run: pnpm test:run
+
+      # 第八步：项目构建（Vite 打包）
+      - name: Build
+        run: pnpm build
