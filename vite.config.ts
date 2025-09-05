@@ -6,8 +6,13 @@ import vue from '@vitejs/plugin-vue'
 export default defineConfig({
   plugins: [vue(), tailwindcss()],
   test: {
+    setupFiles: "./vitest.setup.ts",
     globals: true, // 允许 describe/it/expect 全局可用
-    environment: "jsdom", // Vue 组件测试需要 DOM 环境
+    environment: "node", // Vue 组件测试需要 DOM 环境, mock 接口测试需要 node 环境
+    coverage: {
+      reporter: ["text", "json", "html"], // 配置代码覆盖率报告
+    },
+    include: ['test/**/*.test.ts']
   },
 });
 /**

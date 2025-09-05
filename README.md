@@ -12,3 +12,9 @@ This project will include basic features such as user authentication, user profi
 * I also added a simple test and got a feel for the CI workflow. 
 * With the help of AI, I drafted a deployment workflow. 
 * I don't fully understand the deployment file yet, but I'm digging into them and the YAML syntax.
+
+### DAY3
+* I wrote and tested an HTTP request mock.
+* I explored some configuration files to get familiar with the basic setup.
+* I haven't started writing actual components or logic yet. I'm focusing on getting familiar with the basic structure of a frontend project.
+* My CI workflow failed. I created a new account to be my reviewer. However, when I approved the pull request through my new account, the dev branch wasn't merged into the main branch. I'm not sure why this happened, so I decided to disable the rule set temporarily.

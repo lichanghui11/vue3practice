@@ -1,1126 +1,1152 @@
 {
-    "version": "2.0.0",
-    "runtimeConfiguration": {
-        "environment": "default",
-        "laxTestingModeEnabled": false,
-        "apiConnectivityCheck": true,
-        "logLevel": "error",
-        "logDestination": "stdout+platform",
-        "logMaxFileSize": 2147483648,
-        "requestHeaderNameRequestId": "x-scan-request-id",
-        "requestHeaderNameScenarioId": "x-scan-scenario-id",
-        "requestHeaderNameRequestType": "x-scan-request-type",
-        "requestFlowrate": 100,
-        "requestTimeout": 30,
-        "requestTlsInsecureSkipVerify": true,
-        "responseFollowRedirection": false,
-        "responseMaxBodySizeScan": 10485760,
-        "happyPathOnly": false,
-        "maxRequestRetryAttempts": 5,
-        "maxScanDuration": 1800,
-        "memoryLimit": 2147483648,
-        "memoryTimeSpan": 10,
-        "reportMaxRequestSizeHappyPath": 8092,
-        "reportMaxRequestSizeTest": 8092,
-        "reportIncludeRequestBody": true,
-        "reportIncludeResponseBody": true,
-        "reportMaxHttpResponseSizeHappyPath": 8092,
-        "reportMaxBodySizeHappyPath": 8092,
-        "reportMaxHttpResponseSizeTest": 8092,
-        "reportMaxBodySizeTest": 8092,
-        "reportIssuesOnly": false,
-        "reportMaxIssues": 1000,
-        "reportMaxSize": 20971520,
-        "reportGenerateCurlCommand": true,
-        "normalizeServerUrls": true
+  "version": "2.0.0",
+  "runtimeConfiguration": {
+    "environment": "default",
+    "laxTestingModeEnabled": false,
+    "apiConnectivityCheck": true,
+    "logLevel": "error",
+    "logDestination": "stdout+platform",
+    "logMaxFileSize": 2147483648,
+    "requestHeaderNameRequestId": "x-scan-request-id",
+    "requestHeaderNameScenarioId": "x-scan-scenario-id",
+    "requestHeaderNameRequestType": "x-scan-request-type",
+    "requestFlowrate": 100,
+    "requestTimeout": 30,
+    "requestTlsInsecureSkipVerify": true,
+    "responseFollowRedirection": false,
+    "responseMaxBodySizeScan": 10485760,
+    "happyPathOnly": false,
+    "maxRequestRetryAttempts": 5,
+    "maxScanDuration": 1800,
+    "memoryLimit": 2147483648,
+    "memoryTimeSpan": 10,
+    "reportMaxRequestSizeHappyPath": 8092,
+    "reportMaxRequestSizeTest": 8092,
+    "reportIncludeRequestBody": true,
+    "reportIncludeResponseBody": true,
+    "reportMaxHttpResponseSizeHappyPath": 8092,
+    "reportMaxBodySizeHappyPath": 8092,
+    "reportMaxHttpResponseSizeTest": 8092,
+    "reportMaxBodySizeTest": 8092,
+    "reportIssuesOnly": false,
+    "reportMaxIssues": 1000,
+    "reportMaxSize": 20971520,
+    "reportGenerateCurlCommand": true,
+    "normalizeServerUrls": true
+  },
+  "customizations": {
+    "happyPaths": {
+      "retry": 1,
+      "responsePolicy": {
+        "httpStatusExpected": true,
+        "mustBeConformant": true
+      },
+      "httpStatusExpected": []
     },
-    "customizations": {
-        "happyPaths": {
-            "retry": 1,
-            "responsePolicy": {
-                "httpStatusExpected": true,
-                "mustBeConformant": true
-            },
-            "httpStatusExpected": []
-        },
-        "tests": {
-            "responsePolicy": {
-                "httpStatusExpected": true,
-                "mustBeConformant": true
-            }
-        }
-    },
-    "authenticationDetails": [
-        {
-            "Token": {
-                "type": "apiKey",
-                "in": "header",
-                "name": "Authorization",
-                "default": "Token",
-                "credentials": {
-                    "Token": {
-                        "description": "Token security",
-                        "credential": "{{Token}}"
-                    }
-                }
-            }
-        }
-    ],
-    "operations": {
-        "CreateArticle": {
-            "operationId": "CreateArticle",
-            "scenarios": [
-                {
-                    "key": "happy.path",
-                    "fuzzing": true,
-                    "requests": [
-                        {
-                            "$ref": "#/operations/CreateArticle/request",
-                            "fuzzing": true
-                        }
-                    ]
-                }
-            ],
-            "request": {
-                "operationId": "CreateArticle",
-                "auth": [
-                    "Token"
-                ],
-                "request": {
-                    "type": "42c",
-                    "details": {
-                        "url": "{{host}}/articles",
-                        "method": "POST",
-                        "headers": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application/json"
-                            }
-                        ],
-                        "requestBody": {
-                            "mode": "json",
-                            "json": {
-                                "article": {
-                                    "body": "vvgfznbgrmwcrqcxvoxoumzdvihhvbuv",
-                                    "description": "xwxrvgrrxbiormmdsukwuajpnoduasau",
-                                    "tagList": [
-                                        "gorenkfpfotxwrdtvaaucqycckkktlyu"
-                                    ],
-                                    "title": "hcdyceqalkgeqadgqebhxhkbnnbqktvh"
-                                }
-                            }
-                        }
-                    }
-                },
-                "defaultResponse": "201",
-                "responses": {
-                    "201": {
-                        "expectations": {
-                            "httpStatus": 201
-                        }
-                    },
-                    "401": {
-                        "expectations": {
-                            "httpStatus": 401
-                        }
-                    },
-                    "422": {
-                        "expectations": {
-                            "httpStatus": 422
-                        }
-                    }
-                }
-            }
-        },
-        "CreateArticleComment": {
-            "operationId": "CreateArticleComment",
-            "scenarios": [
-                {
-                    "key": "happy.path",
-                    "fuzzing": true,
-                    "requests": [
-                        {
-                            "$ref": "#/operations/CreateArticleComment/request",
-                            "fuzzing": true
-                        }
-                    ]
-                }
-            ],
-            "request": {
-                "operationId": "CreateArticleComment",
-                "auth": [
-                    "Token"
-                ],
-                "request": {
-                    "type": "42c",
-                    "details": {
-                        "url": "{{host}}/articles/{slug}/comments",
-                        "method": "POST",
-                        "paths": [
-                            {
-                                "key": "slug",
-                                "value": "aqkjrdchwudvmrcppkdfvyokuqoaskkl"
-                            }
-                        ],
-                        "headers": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application/json"
-                            }
-                        ],
-                        "requestBody": {
-                            "mode": "json",
-                            "json": {
-                                "comment": {
-                                    "body": "tlciwnbfktptlzhpqpthzfidmevmradu"
-                                }
-                            }
-                        }
-                    }
-                },
-                "defaultResponse": "200",
-                "responses": {
-                    "200": {
-                        "expectations": {
-                            "httpStatus": 200
-                        }
-                    },
-                    "401": {
-                        "expectations": {
-                            "httpStatus": 401
-                        }
-                    },
-                    "422": {
-                        "expectations": {
-                            "httpStatus": 422
-                        }
-                    }
-                }
-            }
-        },
-        "CreateArticleFavorite": {
-            "operationId": "CreateArticleFavorite",
-            "scenarios": [
-                {
-                    "key": "happy.path",
-                    "fuzzing": true,
-                    "requests": [
-                        {
-                            "$ref": "#/operations/CreateArticleFavorite/request",
-                            "fuzzing": true
-                        }
-                    ]
-                }
-            ],
-            "request": {
-                "operationId": "CreateArticleFavorite",
-                "auth": [
-                    "Token"
-                ],
-                "request": {
-                    "type": "42c",
-                    "details": {
-                        "url": "{{host}}/articles/{slug}/favorite",
-                        "method": "POST",
-                        "paths": [
-                            {
-                                "key": "slug",
-                                "value": "dtwdghufkvbiytisayhiommkpufwcbxz"
-                            }
-                        ]
-                    }
-                },
-                "defaultResponse": "200",
-                "responses": {
-                    "200": {
-                        "expectations": {
-                            "httpStatus": 200
-                        }
-                    },
-                    "401": {
-                        "expectations": {
-                            "httpStatus": 401
-                        }
-                    },
-                    "422": {
-                        "expectations": {
-                            "httpStatus": 422
-                        }
-                    }
-                }
-            }
-        },
-        "CreateUser": {
-            "operationId": "CreateUser",
-            "scenarios": [
-                {
-                    "key": "happy.path",
-                    "fuzzing": true,
-                    "requests": [
-                        {
-                            "$ref": "#/operations/CreateUser/request",
-                            "fuzzing": true
-                        }
-                    ]
-                }
-            ],
-            "request": {
-                "operationId": "CreateUser",
-                "request": {
-                    "type": "42c",
-                    "details": {
-                        "url": "{{host}}/users",
-                        "method": "POST",
-                        "headers": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application/json"
-                            }
-                        ],
-                        "requestBody": {
-                            "mode": "json",
-                            "json": {
-                                "user": {
-                                    "email": "keteszncchuuohfhpchqrkeenlgbcqgi",
-                                    "password": "fkzalegmpqpkshntrjtnvvyjwpwoqfvk",
-                                    "username": "ifxatyshpfogjsdhsnwqkxswsqwrfbca"
-                                }
-                            }
-                        }
-                    }
-                },
-                "defaultResponse": "201",
-                "responses": {
-                    "201": {
-                        "expectations": {
-                            "httpStatus": 201
-                        }
-                    },
-                    "422": {
-                        "expectations": {
-                            "httpStatus": 422
-                        }
-                    }
-                }
-            }
-        },
-        "DeleteArticle": {
-            "operationId": "DeleteArticle",
-            "scenarios": [
-                {
-                    "key": "happy.path",
-                    "fuzzing": true,
-                    "requests": [
-                        {
-                            "$ref": "#/operations/DeleteArticle/request",
-                            "fuzzing": true
-                        }
-                    ]
-                }
-            ],
-            "request": {
-                "operationId": "DeleteArticle",
-                "auth": [
-                    "Token"
-                ],
-                "request": {
-                    "type": "42c",
-                    "details": {
-                        "url": "{{host}}/articles/{slug}",
-                        "method": "DELETE",
-                        "paths": [
-                            {
-                                "key": "slug",
-                                "value": "lzxbnaadnpaghirykndzppnwzqgtesdx"
-                            }
-                        ]
-                    }
-                },
-                "defaultResponse": "200",
-                "responses": {
-                    "200": {
-                        "expectations": {
-                            "httpStatus": 200
-                        }
-                    },
-                    "401": {
-                        "expectations": {
-                            "httpStatus": 401
-                        }
-                    },
-                    "422": {
-                        "expectations": {
-                            "httpStatus": 422
-                        }
-                    }
-                }
-            }
-        },
-        "DeleteArticleComment": {
-            "operationId": "DeleteArticleComment",
-            "scenarios": [
-                {
-                    "key": "happy.path",
-                    "fuzzing": true,
-                    "requests": [
-                        {
-                            "$ref": "#/operations/DeleteArticleComment/request",
-                            "fuzzing": true
-                        }
-                    ]
-                }
-            ],
-            "request": {
-                "operationId": "DeleteArticleComment",
-                "auth": [
-                    "Token"
-                ],
-                "request": {
-                    "type": "42c",
-                    "details": {
-                        "url": "{{host}}/articles/{slug}/comments/{id}",
-                        "method": "DELETE",
-                        "paths": [
-                            {
-                                "key": "id",
-                                "value": 8232536480128643033
-                            },
-                            {
-                                "key": "slug",
-                                "value": "yudwgwanlubcueakrfzttzxkbylxtohy"
-                            }
-                        ]
-                    }
-                },
-                "defaultResponse": "200",
-                "responses": {
-                    "200": {
-                        "expectations": {
-                            "httpStatus": 200
-                        }
-                    },
-                    "401": {
-                        "expectations": {
-                            "httpStatus": 401
-                        }
-                    },
-                    "422": {
-                        "expectations": {
-                            "httpStatus": 422
-                        }
-                    }
-                }
-            }
-        },
-        "DeleteArticleFavorite": {
-            "operationId": "DeleteArticleFavorite",
-            "scenarios": [
-                {
-                    "key": "happy.path",
-                    "fuzzing": true,
-                    "requests": [
-                        {
-                            "$ref": "#/operations/DeleteArticleFavorite/request",
-                            "fuzzing": true
-                        }
-                    ]
-                }
-            ],
-            "request": {
-                "operationId": "DeleteArticleFavorite",
-                "auth": [
-                    "Token"
-                ],
-                "request": {
-                    "type": "42c",
-                    "details": {
-                        "url": "{{host}}/articles/{slug}/favorite",
-                        "method": "DELETE",
-                        "paths": [
-                            {
-                                "key": "slug",
-                                "value": "wybjmacxnyktvsklxfnecdqnkgadxpxd"
-                            }
-                        ]
-                    }
-                },
-                "defaultResponse": "200",
-                "responses": {
-                    "200": {
-                        "expectations": {
-                            "httpStatus": 200
-                        }
-                    },
-                    "401": {
-                        "expectations": {
-                            "httpStatus": 401
-                        }
-                    },
-                    "422": {
-                        "expectations": {
-                            "httpStatus": 422
-                        }
-                    }
-                }
-            }
-        },
-        "FollowUserByUsername": {
-            "operationId": "FollowUserByUsername",
-            "scenarios": [
-                {
-                    "key": "happy.path",
-                    "fuzzing": true,
-                    "requests": [
-                        {
-                            "$ref": "#/operations/FollowUserByUsername/request",
-                            "fuzzing": true
-                        }
-                    ]
-                }
-            ],
-            "request": {
-                "operationId": "FollowUserByUsername",
-                "auth": [
-                    "Token"
-                ],
-                "request": {
-                    "type": "42c",
-                    "details": {
-                        "url": "{{host}}/profiles/{username}/follow",
-                        "method": "POST",
-                        "paths": [
-                            {
-                                "key": "username",
-                                "value": "xpthffmsepkdvqaxjeoxolnngyxeywwo"
-                            }
-                        ]
-                    }
-                },
-                "defaultResponse": "200",
-                "responses": {
-                    "200": {
-                        "expectations": {
-                            "httpStatus": 200
-                        }
-                    },
-                    "401": {
-                        "expectations": {
-                            "httpStatus": 401
-                        }
-                    },
-                    "422": {
-                        "expectations": {
-                            "httpStatus": 422
-                        }
-                    }
-                }
-            }
-        },
-        "GetArticle": {
-            "operationId": "GetArticle",
-            "scenarios": [
-                {
-                    "key": "happy.path",
-                    "fuzzing": true,
-                    "requests": [
-                        {
-                            "$ref": "#/operations/GetArticle/request",
-                            "fuzzing": true
-                        }
-                    ]
-                }
-            ],
-            "request": {
-                "operationId": "GetArticle",
-                "request": {
-                    "type": "42c",
-                    "details": {
-                        "url": "{{host}}/articles/{slug}",
-                        "method": "GET",
-                        "paths": [
-                            {
-                                "key": "slug",
-                                "value": "uqvyesxpenboyjaieosrzaijkraklxrv"
-                            }
-                        ]
-                    }
-                },
-                "defaultResponse": "200",
-                "responses": {
-                    "200": {
-                        "expectations": {
-                            "httpStatus": 200
-                        }
-                    },
-                    "422": {
-                        "expectations": {
-                            "httpStatus": 422
-                        }
-                    }
-                }
-            }
-        },
-        "GetArticleComments": {
-            "operationId": "GetArticleComments",
-            "scenarios": [
-                {
-                    "key": "happy.path",
-                    "fuzzing": true,
-                    "requests": [
-                        {
-                            "$ref": "#/operations/GetArticleComments/request",
-                            "fuzzing": true
-                        }
-                    ]
-                }
-            ],
-            "request": {
-                "operationId": "GetArticleComments",
-                "request": {
-                    "type": "42c",
-                    "details": {
-                        "url": "{{host}}/articles/{slug}/comments",
-                        "method": "GET",
-                        "paths": [
-                            {
-                                "key": "slug",
-                                "value": "vzczgtkzqfehkzlgwykjykngnegqoizq"
-                            }
-                        ]
-                    }
-                },
-                "defaultResponse": "200",
-                "responses": {
-                    "200": {
-                        "expectations": {
-                            "httpStatus": 200
-                        }
-                    },
-                    "401": {
-                        "expectations": {
-                            "httpStatus": 401
-                        }
-                    },
-                    "422": {
-                        "expectations": {
-                            "httpStatus": 422
-                        }
-                    }
-                }
-            }
-        },
-        "GetArticles": {
-            "operationId": "GetArticles",
-            "scenarios": [
-                {
-                    "key": "happy.path",
-                    "fuzzing": true,
-                    "requests": [
-                        {
-                            "$ref": "#/operations/GetArticles/request",
-                            "fuzzing": true
-                        }
-                    ]
-                }
-            ],
-            "request": {
-                "operationId": "GetArticles",
-                "request": {
-                    "type": "42c",
-                    "details": {
-                        "url": "{{host}}/articles",
-                        "method": "GET",
-                        "queries": [
-                            {
-                                "key": "tag",
-                                "value": "nycjkayzbnvceyastidrdfuqonhefamq"
-                            },
-                            {
-                                "key": "author",
-                                "value": "iptvtwysbshqzxjqzeqoivtnvxafocgr"
-                            },
-                            {
-                                "key": "favorited",
-                                "value": "yemwendxbevpoiuvgesnhkdqrnuwtyek"
-                            },
-                            {
-                                "key": "offset",
-                                "value": 5422773520838902743
-                            },
-                            {
-                                "key": "limit",
-                                "value": 20
-                            }
-                        ]
-                    }
-                },
-                "defaultResponse": "200",
-                "responses": {
-                    "200": {
-                        "expectations": {
-                            "httpStatus": 200
-                        }
-                    },
-                    "401": {
-                        "expectations": {
-                            "httpStatus": 401
-                        }
-                    },
-                    "422": {
-                        "expectations": {
-                            "httpStatus": 422
-                        }
-                    }
-                }
-            }
-        },
-        "GetArticlesFeed": {
-            "operationId": "GetArticlesFeed",
-            "scenarios": [
-                {
-                    "key": "happy.path",
-                    "fuzzing": true,
-                    "requests": [
-                        {
-                            "$ref": "#/operations/GetArticlesFeed/request",
-                            "fuzzing": true
-                        }
-                    ]
-                }
-            ],
-            "request": {
-                "operationId": "GetArticlesFeed",
-                "auth": [
-                    "Token"
-                ],
-                "request": {
-                    "type": "42c",
-                    "details": {
-                        "url": "{{host}}/articles/feed",
-                        "method": "GET",
-                        "queries": [
-                            {
-                                "key": "offset",
-                                "value": 1058701487655261858
-                            },
-                            {
-                                "key": "limit",
-                                "value": 20
-                            }
-                        ]
-                    }
-                },
-                "defaultResponse": "200",
-                "responses": {
-                    "200": {
-                        "expectations": {
-                            "httpStatus": 200
-                        }
-                    },
-                    "401": {
-                        "expectations": {
-                            "httpStatus": 401
-                        }
-                    },
-                    "422": {
-                        "expectations": {
-                            "httpStatus": 422
-                        }
-                    }
-                }
-            }
-        },
-        "GetCurrentUser": {
-            "operationId": "GetCurrentUser",
-            "scenarios": [
-                {
-                    "key": "happy.path",
-                    "fuzzing": true,
-                    "requests": [
-                        {
-                            "$ref": "#/operations/GetCurrentUser/request",
-                            "fuzzing": true
-                        }
-                    ]
-                }
-            ],
-            "request": {
-                "operationId": "GetCurrentUser",
-                "auth": [
-                    "Token"
-                ],
-                "request": {
-                    "type": "42c",
-                    "details": {
-                        "url": "{{host}}/user",
-                        "method": "GET"
-                    }
-                },
-                "defaultResponse": "200",
-                "responses": {
-                    "200": {
-                        "expectations": {
-                            "httpStatus": 200
-                        }
-                    },
-                    "401": {
-                        "expectations": {
-                            "httpStatus": 401
-                        }
-                    },
-                    "422": {
-                        "expectations": {
-                            "httpStatus": 422
-                        }
-                    }
-                }
-            }
-        },
-        "GetProfileByUsername": {
-            "operationId": "GetProfileByUsername",
-            "scenarios": [
-                {
-                    "key": "happy.path",
-                    "fuzzing": true,
-                    "requests": [
-                        {
-                            "$ref": "#/operations/GetProfileByUsername/request",
-                            "fuzzing": true
-                        }
-                    ]
-                }
-            ],
-            "request": {
-                "operationId": "GetProfileByUsername",
-                "request": {
-                    "type": "42c",
-                    "details": {
-                        "url": "{{host}}/profiles/{username}",
-                        "method": "GET",
-                        "paths": [
-                            {
-                                "key": "username",
-                                "value": "fjzuejgyjhjfqytzidfizgflojqzsuxz"
-                            }
-                        ]
-                    }
-                },
-                "defaultResponse": "200",
-                "responses": {
-                    "200": {
-                        "expectations": {
-                            "httpStatus": 200
-                        }
-                    },
-                    "401": {
-                        "expectations": {
-                            "httpStatus": 401
-                        }
-                    },
-                    "422": {
-                        "expectations": {
-                            "httpStatus": 422
-                        }
-                    }
-                }
-            }
-        },
-        "GetTags": {
-            "operationId": "GetTags",
-            "scenarios": [
-                {
-                    "key": "happy.path",
-                    "fuzzing": true,
-                    "requests": [
-                        {
-                            "$ref": "#/operations/GetTags/request",
-                            "fuzzing": true
-                        }
-                    ]
-                }
-            ],
-            "request": {
-                "operationId": "GetTags",
-                "request": {
-                    "type": "42c",
-                    "details": {
-                        "url": "{{host}}/tags",
-                        "method": "GET"
-                    }
-                },
-                "defaultResponse": "200",
-                "responses": {
-                    "200": {
-                        "expectations": {
-                            "httpStatus": 200
-                        }
-                    },
-                    "422": {
-                        "expectations": {
-                            "httpStatus": 422
-                        }
-                    }
-                }
-            }
-        },
-        "Login": {
-            "operationId": "Login",
-            "scenarios": [
-                {
-                    "key": "happy.path",
-                    "fuzzing": true,
-                    "requests": [
-                        {
-                            "$ref": "#/operations/Login/request",
-                            "fuzzing": true
-                        }
-                    ]
-                }
-            ],
-            "request": {
-                "operationId": "Login",
-                "request": {
-                    "type": "42c",
-                    "details": {
-                        "url": "{{host}}/users/login",
-                        "method": "POST",
-                        "headers": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application/json"
-                            }
-                        ],
-                        "requestBody": {
-                            "mode": "json",
-                            "json": {
-                                "user": {
-                                    "email": "vnqpuvhiofiqksewdebfvlgbvyidlabt",
-                                    "password": "culpctdirisgeqbbzwvgqitpeyoatqde"
-                                }
-                            }
-                        }
-                    }
-                },
-                "defaultResponse": "200",
-                "responses": {
-                    "200": {
-                        "expectations": {
-                            "httpStatus": 200
-                        }
-                    },
-                    "401": {
-                        "expectations": {
-                            "httpStatus": 401
-                        }
-                    },
-                    "422": {
-                        "expectations": {
-                            "httpStatus": 422
-                        }
-                    }
-                }
-            }
-        },
-        "UnfollowUserByUsername": {
-            "operationId": "UnfollowUserByUsername",
-            "scenarios": [
-                {
-                    "key": "happy.path",
-                    "fuzzing": true,
-                    "requests": [
-                        {
-                            "$ref": "#/operations/UnfollowUserByUsername/request",
-                            "fuzzing": true
-                        }
-                    ]
-                }
-            ],
-            "request": {
-                "operationId": "UnfollowUserByUsername",
-                "auth": [
-                    "Token"
-                ],
-                "request": {
-                    "type": "42c",
-                    "details": {
-                        "url": "{{host}}/profiles/{username}/follow",
-                        "method": "DELETE",
-                        "paths": [
-                            {
-                                "key": "username",
-                                "value": "lojwihcptgcmhwlqeisqkmktzyzehypr"
-                            }
-                        ]
-                    }
-                },
-                "defaultResponse": "200",
-                "responses": {
-                    "200": {
-                        "expectations": {
-                            "httpStatus": 200
-                        }
-                    },
-                    "401": {
-                        "expectations": {
-                            "httpStatus": 401
-                        }
-                    },
-                    "422": {
-                        "expectations": {
-                            "httpStatus": 422
-                        }
-                    }
-                }
-            }
-        },
-        "UpdateArticle": {
-            "operationId": "UpdateArticle",
-            "scenarios": [
-                {
-                    "key": "happy.path",
-                    "fuzzing": true,
-                    "requests": [
-                        {
-                            "$ref": "#/operations/UpdateArticle/request",
-                            "fuzzing": true
-                        }
-                    ]
-                }
-            ],
-            "request": {
-                "operationId": "UpdateArticle",
-                "auth": [
-                    "Token"
-                ],
-                "request": {
-                    "type": "42c",
-                    "details": {
-                        "url": "{{host}}/articles/{slug}",
-                        "method": "PUT",
-                        "paths": [
-                            {
-                                "key": "slug",
-                                "value": "mjluztmujyzhhqloaxwwgsxvdksrfmzj"
-                            }
-                        ],
-                        "headers": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application/json"
-                            }
-                        ],
-                        "requestBody": {
-                            "mode": "json",
-                            "json": {
-                                "article": {
-                                    "body": "zekmmewqubejserxahyjmfpsymlkzwqs",
-                                    "description": "ahivgphzlpezbfbfqjsjsktoiqnxwjgu",
-                                    "title": "zpvzptjgzhdxhxiwnckuzodbekxrtdlv"
-                                }
-                            }
-                        }
-                    }
-                },
-                "defaultResponse": "200",
-                "responses": {
-                    "200": {
-                        "expectations": {
-                            "httpStatus": 200
-                        }
-                    },
-                    "401": {
-                        "expectations": {
-                            "httpStatus": 401
-                        }
-                    },
-                    "422": {
-                        "expectations": {
-                            "httpStatus": 422
-                        }
-                    }
-                }
-            }
-        },
-        "UpdateCurrentUser": {
-            "operationId": "UpdateCurrentUser",
-            "scenarios": [
-                {
-                    "key": "happy.path",
-                    "fuzzing": true,
-                    "requests": [
-                        {
-                            "$ref": "#/operations/UpdateCurrentUser/request",
-                            "fuzzing": true
-                        }
-                    ]
-                }
-            ],
-            "request": {
-                "operationId": "UpdateCurrentUser",
-                "auth": [
-                    "Token"
-                ],
-                "request": {
-                    "type": "42c",
-                    "details": {
-                        "url": "{{host}}/user",
-                        "method": "PUT",
-                        "headers": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application/json"
-                            }
-                        ],
-                        "requestBody": {
-                            "mode": "json",
-                            "json": {
-                                "user": {
-                                    "bio": "knvupibzksitsfgjfealuunurcahgsfe",
-                                    "email": "aevypatdjkvmoyyhecwzqxzygrffhjov",
-                                    "image": "qlidptrxtwanvwcpihvfnillqdbscxcz",
-                                    "password": "eaphqvckvozvwuqtwirupdyskqcamemh",
-                                    "username": "emtijslhduugxqtadtrnezpqfuufogby"
-                                }
-                            }
-                        }
-                    }
-                },
-                "defaultResponse": "200",
-                "responses": {
-                    "200": {
-                        "expectations": {
-                            "httpStatus": 200
-                        }
-                    },
-                    "401": {
-                        "expectations": {
-                            "httpStatus": 401
-                        }
-                    },
-                    "422": {
-                        "expectations": {
-                            "httpStatus": 422
-                        }
-                    }
-                }
-            }
-        }
-    },
-    "environments": {
-        "default": {
-            "variables": {
-                "Token": {
-                    "from": "environment",
-                    "name": "SCAN42C_SECURITY_TOKEN",
-                    "required": true
-                },
-                "host": {
-                    "from": "environment",
-                    "name": "SCAN42C_HOST",
-                    "required": false,
-                    "default": "https://api.realworld.io/api"
-                }
-            }
-        }
+    "tests": {
+      "responsePolicy": {
+        "httpStatusExpected": true,
+        "mustBeConformant": true
+      }
     }
+  },
+  "environments": {
+    "default": {
+      "variables": {
+        "Token": {
+          "name": "SCAN42C_SECURITY_TOKEN",
+          "from": "environment",
+          "required": true
+        },
+        "host": {
+          "name": "SCAN42C_HOST",
+          "from": "environment",
+          "required": false,
+          "default": "https://api.realworld.io/api"
+        }
+      }
+    }
+  },
+  "operations": {
+    "CreateArticle": {
+      "operationId": "CreateArticle",
+      "request": {
+        "operationId": "CreateArticle",
+        "auth": [
+          "Token"
+        ],
+        "request": {
+          "type": "42c",
+          "details": {
+            "operationId": "CreateArticle",
+            "method": "POST",
+            "url": "{{host}}/articles",
+            "headers": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "requestBody": {
+              "mode": "json",
+              "json": {
+                "article": {
+                  "body": "vvgfznbgrmwcrqcxvoxoumzdvihhvbuv",
+                  "description": "xwxrvgrrxbiormmdsukwuajpnoduasau",
+                  "tagList": [
+                    "gorenkfpfotxwrdtvaaucqycckkktlyu"
+                  ],
+                  "title": "hcdyceqalkgeqadgqebhxhkbnnbqktvh"
+                }
+              }
+            }
+          }
+        },
+        "defaultResponse": "201",
+        "responses": {
+          "201": {
+            "expectations": {
+              "httpStatus": 201
+            }
+          },
+          "401": {
+            "expectations": {
+              "httpStatus": 401
+            }
+          },
+          "422": {
+            "expectations": {
+              "httpStatus": 422
+            }
+          }
+        }
+      },
+      "scenarios": [
+        {
+          "key": "happy.path",
+          "requests": [
+            {
+              "fuzzing": true,
+              "$ref": "#/operations/CreateArticle/request"
+            }
+          ],
+          "fuzzing": true
+        }
+      ]
+    },
+    "CreateArticleComment": {
+      "operationId": "CreateArticleComment",
+      "request": {
+        "operationId": "CreateArticleComment",
+        "auth": [
+          "Token"
+        ],
+        "request": {
+          "type": "42c",
+          "details": {
+            "operationId": "CreateArticleComment",
+            "method": "POST",
+            "url": "{{host}}/articles/{slug}/comments",
+            "headers": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "paths": [
+              {
+                "key": "slug",
+                "value": "aqkjrdchwudvmrcppkdfvyokuqoaskkl"
+              }
+            ],
+            "requestBody": {
+              "mode": "json",
+              "json": {
+                "comment": {
+                  "body": "tlciwnbfktptlzhpqpthzfidmevmradu"
+                }
+              }
+            }
+          }
+        },
+        "defaultResponse": "200",
+        "responses": {
+          "200": {
+            "expectations": {
+              "httpStatus": 200
+            }
+          },
+          "401": {
+            "expectations": {
+              "httpStatus": 401
+            }
+          },
+          "422": {
+            "expectations": {
+              "httpStatus": 422
+            }
+          }
+        }
+      },
+      "scenarios": [
+        {
+          "key": "happy.path",
+          "requests": [
+            {
+              "fuzzing": true,
+              "$ref": "#/operations/CreateArticleComment/request"
+            }
+          ],
+          "fuzzing": true
+        }
+      ]
+    },
+    "CreateArticleFavorite": {
+      "operationId": "CreateArticleFavorite",
+      "request": {
+        "operationId": "CreateArticleFavorite",
+        "auth": [
+          "Token"
+        ],
+        "request": {
+          "type": "42c",
+          "details": {
+            "operationId": "CreateArticleFavorite",
+            "method": "POST",
+            "url": "{{host}}/articles/{slug}/favorite",
+            "paths": [
+              {
+                "key": "slug",
+                "value": "dtwdghufkvbiytisayhiommkpufwcbxz"
+              }
+            ]
+          }
+        },
+        "defaultResponse": "200",
+        "responses": {
+          "200": {
+            "expectations": {
+              "httpStatus": 200
+            }
+          },
+          "401": {
+            "expectations": {
+              "httpStatus": 401
+            }
+          },
+          "422": {
+            "expectations": {
+              "httpStatus": 422
+            }
+          }
+        }
+      },
+      "scenarios": [
+        {
+          "key": "happy.path",
+          "requests": [
+            {
+              "fuzzing": true,
+              "$ref": "#/operations/CreateArticleFavorite/request"
+            }
+          ],
+          "fuzzing": true
+        }
+      ]
+    },
+    "CreateUser": {
+      "operationId": "CreateUser",
+      "request": {
+        "operationId": "CreateUser",
+        "request": {
+          "type": "42c",
+          "details": {
+            "operationId": "CreateUser",
+            "method": "POST",
+            "url": "{{host}}/users",
+            "headers": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "requestBody": {
+              "mode": "json",
+              "json": {
+                "user": {
+                  "email": "keteszncchuuohfhpchqrkeenlgbcqgi",
+                  "password": "fkzalegmpqpkshntrjtnvvyjwpwoqfvk",
+                  "username": "ifxatyshpfogjsdhsnwqkxswsqwrfbca"
+                }
+              }
+            }
+          }
+        },
+        "defaultResponse": "201",
+        "responses": {
+          "201": {
+            "expectations": {
+              "httpStatus": 201
+            },
+            "variableAssignments": {
+              "varname": {
+                "from": "response",
+                "in": "header",
+                "name": "name"
+              }
+            }
+          },
+          "422": {
+            "expectations": {
+              "httpStatus": 422
+            }
+          }
+        }
+      },
+      "scenarios": [
+        {
+          "key": "happy.path",
+          "requests": [
+            {
+              "fuzzing": true,
+              "$ref": "#/operations/CreateUser/request"
+            }
+          ],
+          "fuzzing": true
+        }
+      ]
+    },
+    "DeleteArticle": {
+      "operationId": "DeleteArticle",
+      "request": {
+        "operationId": "DeleteArticle",
+        "auth": [
+          "Token"
+        ],
+        "request": {
+          "type": "42c",
+          "details": {
+            "operationId": "DeleteArticle",
+            "method": "DELETE",
+            "url": "{{host}}/articles/{slug}",
+            "paths": [
+              {
+                "key": "slug",
+                "value": "lzxbnaadnpaghirykndzppnwzqgtesdx"
+              }
+            ]
+          }
+        },
+        "defaultResponse": "200",
+        "responses": {
+          "200": {
+            "expectations": {
+              "httpStatus": 200
+            }
+          },
+          "401": {
+            "expectations": {
+              "httpStatus": 401
+            }
+          },
+          "422": {
+            "expectations": {
+              "httpStatus": 422
+            }
+          }
+        }
+      },
+      "scenarios": [
+        {
+          "key": "happy.path",
+          "requests": [
+            {
+              "fuzzing": true,
+              "$ref": "#/operations/DeleteArticle/request"
+            }
+          ],
+          "fuzzing": true
+        }
+      ]
+    },
+    "DeleteArticleComment": {
+      "operationId": "DeleteArticleComment",
+      "request": {
+        "operationId": "DeleteArticleComment",
+        "auth": [
+          "Token"
+        ],
+        "request": {
+          "type": "42c",
+          "details": {
+            "operationId": "DeleteArticleComment",
+            "method": "DELETE",
+            "url": "{{host}}/articles/{slug}/comments/{id}",
+            "paths": [
+              {
+                "key": "id",
+                "value": 8232536480128643000
+              },
+              {
+                "key": "slug",
+                "value": "yudwgwanlubcueakrfzttzxkbylxtohy"
+              }
+            ]
+          }
+        },
+        "defaultResponse": "200",
+        "responses": {
+          "200": {
+            "expectations": {
+              "httpStatus": 200
+            }
+          },
+          "401": {
+            "expectations": {
+              "httpStatus": 401
+            }
+          },
+          "422": {
+            "expectations": {
+              "httpStatus": 422
+            }
+          }
+        }
+      },
+      "scenarios": [
+        {
+          "key": "happy.path",
+          "requests": [
+            {
+              "fuzzing": true,
+              "$ref": "#/operations/DeleteArticleComment/request"
+            }
+          ],
+          "fuzzing": true
+        }
+      ]
+    },
+    "DeleteArticleFavorite": {
+      "operationId": "DeleteArticleFavorite",
+      "request": {
+        "operationId": "DeleteArticleFavorite",
+        "auth": [
+          "Token"
+        ],
+        "request": {
+          "type": "42c",
+          "details": {
+            "operationId": "DeleteArticleFavorite",
+            "method": "DELETE",
+            "url": "{{host}}/articles/{slug}/favorite",
+            "paths": [
+              {
+                "key": "slug",
+                "value": "wybjmacxnyktvsklxfnecdqnkgadxpxd"
+              }
+            ]
+          }
+        },
+        "defaultResponse": "200",
+        "responses": {
+          "200": {
+            "expectations": {
+              "httpStatus": 200
+            }
+          },
+          "401": {
+            "expectations": {
+              "httpStatus": 401
+            }
+          },
+          "422": {
+            "expectations": {
+              "httpStatus": 422
+            }
+          }
+        }
+      },
+      "scenarios": [
+        {
+          "key": "happy.path",
+          "requests": [
+            {
+              "fuzzing": true,
+              "$ref": "#/operations/DeleteArticleFavorite/request"
+            }
+          ],
+          "fuzzing": true
+        }
+      ]
+    },
+    "FollowUserByUsername": {
+      "operationId": "FollowUserByUsername",
+      "request": {
+        "operationId": "FollowUserByUsername",
+        "auth": [
+          "Token"
+        ],
+        "request": {
+          "type": "42c",
+          "details": {
+            "operationId": "FollowUserByUsername",
+            "method": "POST",
+            "url": "{{host}}/profiles/{username}/follow",
+            "paths": [
+              {
+                "key": "username",
+                "value": "xpthffmsepkdvqaxjeoxolnngyxeywwo"
+              }
+            ]
+          }
+        },
+        "defaultResponse": "200",
+        "responses": {
+          "200": {
+            "expectations": {
+              "httpStatus": 200
+            }
+          },
+          "401": {
+            "expectations": {
+              "httpStatus": 401
+            }
+          },
+          "422": {
+            "expectations": {
+              "httpStatus": 422
+            }
+          }
+        }
+      },
+      "scenarios": [
+        {
+          "key": "happy.path",
+          "requests": [
+            {
+              "fuzzing": true,
+              "$ref": "#/operations/FollowUserByUsername/request"
+            }
+          ],
+          "fuzzing": true
+        }
+      ]
+    },
+    "GetArticle": {
+      "operationId": "GetArticle",
+      "request": {
+        "operationId": "GetArticle",
+        "request": {
+          "type": "42c",
+          "details": {
+            "operationId": "GetArticle",
+            "method": "GET",
+            "url": "{{host}}/articles/{slug}",
+            "paths": [
+              {
+                "key": "slug",
+                "value": "uqvyesxpenboyjaieosrzaijkraklxrv"
+              }
+            ]
+          }
+        },
+        "defaultResponse": "200",
+        "responses": {
+          "200": {
+            "expectations": {
+              "httpStatus": 200
+            }
+          },
+          "422": {
+            "expectations": {
+              "httpStatus": 422
+            }
+          }
+        }
+      },
+      "scenarios": [
+        {
+          "key": "happy.path",
+          "requests": [
+            {
+              "fuzzing": true,
+              "$ref": "#/operations/GetArticle/request"
+            }
+          ],
+          "fuzzing": true
+        }
+      ]
+    },
+    "GetArticleComments": {
+      "operationId": "GetArticleComments",
+      "request": {
+        "operationId": "GetArticleComments",
+        "request": {
+          "type": "42c",
+          "details": {
+            "operationId": "GetArticleComments",
+            "method": "GET",
+            "url": "{{host}}/articles/{slug}/comments",
+            "paths": [
+              {
+                "key": "slug",
+                "value": "vzczgtkzqfehkzlgwykjykngnegqoizq"
+              }
+            ]
+          }
+        },
+        "defaultResponse": "200",
+        "responses": {
+          "200": {
+            "expectations": {
+              "httpStatus": 200
+            }
+          },
+          "401": {
+            "expectations": {
+              "httpStatus": 401
+            }
+          },
+          "422": {
+            "expectations": {
+              "httpStatus": 422
+            }
+          }
+        }
+      },
+      "scenarios": [
+        {
+          "key": "happy.path",
+          "requests": [
+            {
+              "fuzzing": true,
+              "$ref": "#/operations/GetArticleComments/request"
+            }
+          ],
+          "fuzzing": true
+        }
+      ]
+    },
+    "GetArticles": {
+      "operationId": "GetArticles",
+      "request": {
+        "operationId": "GetArticles",
+        "request": {
+          "type": "42c",
+          "details": {
+            "operationId": "GetArticles",
+            "method": "GET",
+            "url": "{{host}}/articles",
+            "queries": [
+              {
+                "key": "tag",
+                "value": "nycjkayzbnvceyastidrdfuqonhefamq"
+              },
+              {
+                "key": "author",
+                "value": "iptvtwysbshqzxjqzeqoivtnvxafocgr"
+              },
+              {
+                "key": "favorited",
+                "value": "yemwendxbevpoiuvgesnhkdqrnuwtyek"
+              },
+              {
+                "key": "offset",
+                "value": 5422773520838903000
+              },
+              {
+                "key": "limit",
+                "value": 20
+              }
+            ]
+          }
+        },
+        "defaultResponse": "200",
+        "responses": {
+          "200": {
+            "expectations": {
+              "httpStatus": 200
+            }
+          },
+          "401": {
+            "expectations": {
+              "httpStatus": 401
+            }
+          },
+          "422": {
+            "expectations": {
+              "httpStatus": 422
+            }
+          }
+        }
+      },
+      "scenarios": [
+        {
+          "key": "happy.path",
+          "requests": [
+            {
+              "fuzzing": true,
+              "$ref": "#/operations/GetArticles/request"
+            }
+          ],
+          "fuzzing": true
+        }
+      ]
+    },
+    "GetArticlesFeed": {
+      "operationId": "GetArticlesFeed",
+      "request": {
+        "operationId": "GetArticlesFeed",
+        "auth": [
+          "Token"
+        ],
+        "request": {
+          "type": "42c",
+          "details": {
+            "operationId": "GetArticlesFeed",
+            "method": "GET",
+            "url": "{{host}}/articles/feed",
+            "queries": [
+              {
+                "key": "offset",
+                "value": 1058701487655261800
+              },
+              {
+                "key": "limit",
+                "value": 20
+              }
+            ]
+          }
+        },
+        "defaultResponse": "200",
+        "responses": {
+          "200": {
+            "expectations": {
+              "httpStatus": 200
+            }
+          },
+          "401": {
+            "expectations": {
+              "httpStatus": 401
+            }
+          },
+          "422": {
+            "expectations": {
+              "httpStatus": 422
+            }
+          }
+        }
+      },
+      "scenarios": [
+        {
+          "key": "happy.path",
+          "requests": [
+            {
+              "fuzzing": true,
+              "$ref": "#/operations/GetArticlesFeed/request"
+            }
+          ],
+          "fuzzing": true
+        }
+      ]
+    },
+    "GetCurrentUser": {
+      "operationId": "GetCurrentUser",
+      "request": {
+        "operationId": "GetCurrentUser",
+        "auth": [
+          "Token"
+        ],
+        "request": {
+          "type": "42c",
+          "details": {
+            "operationId": "GetCurrentUser",
+            "method": "GET",
+            "url": "{{host}}/user"
+          }
+        },
+        "defaultResponse": "200",
+        "responses": {
+          "200": {
+            "expectations": {
+              "httpStatus": 200
+            }
+          },
+          "401": {
+            "expectations": {
+              "httpStatus": 401
+            }
+          },
+          "422": {
+            "expectations": {
+              "httpStatus": 422
+            }
+          }
+        }
+      },
+      "scenarios": [
+        {
+          "key": "happy.path",
+          "requests": [
+            {
+              "fuzzing": true,
+              "$ref": "#/operations/GetCurrentUser/request"
+            }
+          ],
+          "fuzzing": true
+        }
+      ]
+    },
+    "GetProfileByUsername": {
+      "operationId": "GetProfileByUsername",
+      "request": {
+        "operationId": "GetProfileByUsername",
+        "request": {
+          "type": "42c",
+          "details": {
+            "operationId": "GetProfileByUsername",
+            "method": "GET",
+            "url": "{{host}}/profiles/{username}",
+            "paths": [
+              {
+                "key": "username",
+                "value": "fjzuejgyjhjfqytzidfizgflojqzsuxz"
+              }
+            ]
+          }
+        },
+        "defaultResponse": "200",
+        "responses": {
+          "200": {
+            "expectations": {
+              "httpStatus": 200
+            }
+          },
+          "401": {
+            "expectations": {
+              "httpStatus": 401
+            }
+          },
+          "422": {
+            "expectations": {
+              "httpStatus": 422
+            }
+          }
+        }
+      },
+      "scenarios": [
+        {
+          "key": "happy.path",
+          "requests": [
+            {
+              "fuzzing": true,
+              "$ref": "#/operations/GetProfileByUsername/request"
+            }
+          ],
+          "fuzzing": true
+        }
+      ]
+    },
+    "GetTags": {
+      "operationId": "GetTags",
+      "request": {
+        "operationId": "GetTags",
+        "request": {
+          "type": "42c",
+          "details": {
+            "operationId": "GetTags",
+            "method": "GET",
+            "url": "{{host}}/tags"
+          }
+        },
+        "defaultResponse": "200",
+        "responses": {
+          "200": {
+            "expectations": {
+              "httpStatus": 200
+            }
+          },
+          "422": {
+            "expectations": {
+              "httpStatus": 422
+            }
+          }
+        }
+      },
+      "scenarios": [
+        {
+          "key": "happy.path",
+          "requests": [
+            {
+              "fuzzing": true,
+              "$ref": "#/operations/GetTags/request"
+            }
+          ],
+          "fuzzing": true
+        }
+      ]
+    },
+    "Login": {
+      "operationId": "Login",
+      "request": {
+        "operationId": "Login",
+        "request": {
+          "type": "42c",
+          "details": {
+            "operationId": "Login",
+            "method": "POST",
+            "url": "{{host}}/users/login",
+            "headers": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "requestBody": {
+              "mode": "json",
+              "json": {
+                "user": {
+                  "email": "vnqpuvhiofiqksewdebfvlgbvyidlabt",
+                  "password": "culpctdirisgeqbbzwvgqitpeyoatqde"
+                }
+              }
+            }
+          }
+        },
+        "defaultResponse": "200",
+        "responses": {
+          "200": {
+            "expectations": {
+              "httpStatus": 200
+            }
+          },
+          "401": {
+            "expectations": {
+              "httpStatus": 401
+            }
+          },
+          "422": {
+            "expectations": {
+              "httpStatus": 422
+            }
+          }
+        }
+      },
+      "scenarios": [
+        {
+          "key": "happy.path",
+          "requests": [
+            {
+              "fuzzing": true,
+              "$ref": "#/operations/Login/request"
+            }
+          ],
+          "fuzzing": true
+        }
+      ]
+    },
+    "UnfollowUserByUsername": {
+      "operationId": "UnfollowUserByUsername",
+      "request": {
+        "operationId": "UnfollowUserByUsername",
+        "auth": [
+          "Token"
+        ],
+        "request": {
+          "type": "42c",
+          "details": {
+            "operationId": "UnfollowUserByUsername",
+            "method": "DELETE",
+            "url": "{{host}}/profiles/{username}/follow",
+            "paths": [
+              {
+                "key": "username",
+                "value": "lojwihcptgcmhwlqeisqkmktzyzehypr"
+              }
+            ]
+          }
+        },
+        "defaultResponse": "200",
+        "responses": {
+          "200": {
+            "expectations": {
+              "httpStatus": 200
+            }
+          },
+          "401": {
+            "expectations": {
+              "httpStatus": 401
+            }
+          },
+          "422": {
+            "expectations": {
+              "httpStatus": 422
+            }
+          }
+        }
+      },
+      "scenarios": [
+        {
+          "key": "happy.path",
+          "requests": [
+            {
+              "fuzzing": true,
+              "$ref": "#/operations/UnfollowUserByUsername/request"
+            }
+          ],
+          "fuzzing": true
+        }
+      ]
+    },
+    "UpdateArticle": {
+      "operationId": "UpdateArticle",
+      "request": {
+        "operationId": "UpdateArticle",
+        "auth": [
+          "Token"
+        ],
+        "request": {
+          "type": "42c",
+          "details": {
+            "operationId": "UpdateArticle",
+            "method": "PUT",
+            "url": "{{host}}/articles/{slug}",
+            "headers": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "paths": [
+              {
+                "key": "slug",
+                "value": "mjluztmujyzhhqloaxwwgsxvdksrfmzj"
+              }
+            ],
+            "requestBody": {
+              "mode": "json",
+              "json": {
+                "article": {
+                  "body": "zekmmewqubejserxahyjmfpsymlkzwqs",
+                  "description": "ahivgphzlpezbfbfqjsjsktoiqnxwjgu",
+                  "title": "zpvzptjgzhdxhxiwnckuzodbekxrtdlv"
+                }
+              }
+            }
+          }
+        },
+        "defaultResponse": "200",
+        "responses": {
+          "200": {
+            "expectations": {
+              "httpStatus": 200
+            }
+          },
+          "401": {
+            "expectations": {
+              "httpStatus": 401
+            }
+          },
+          "422": {
+            "expectations": {
+              "httpStatus": 422
+            }
+          }
+        }
+      },
+      "scenarios": [
+        {
+          "key": "happy.path",
+          "requests": [
+            {
+              "fuzzing": true,
+              "$ref": "#/operations/UpdateArticle/request"
+            }
+          ],
+          "fuzzing": true
+        }
+      ]
+    },
+    "UpdateCurrentUser": {
+      "operationId": "UpdateCurrentUser",
+      "request": {
+        "operationId": "UpdateCurrentUser",
+        "auth": [
+          "Token"
+        ],
+        "request": {
+          "type": "42c",
+          "details": {
+            "operationId": "UpdateCurrentUser",
+            "method": "PUT",
+            "url": "{{host}}/user",
+            "headers": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "requestBody": {
+              "mode": "json",
+              "json": {
+                "user": {
+                  "bio": "knvupibzksitsfgjfealuunurcahgsfe",
+                  "email": "aevypatdjkvmoyyhecwzqxzygrffhjov",
+                  "image": "qlidptrxtwanvwcpihvfnillqdbscxcz",
+                  "password": "eaphqvckvozvwuqtwirupdyskqcamemh",
+                  "username": "emtijslhduugxqtadtrnezpqfuufogby"
+                }
+              }
+            }
+          }
+        },
+        "defaultResponse": "200",
+        "responses": {
+          "200": {
+            "expectations": {
+              "httpStatus": 200
+            }
+          },
+          "401": {
+            "expectations": {
+              "httpStatus": 401
+            }
+          },
+          "422": {
+            "expectations": {
+              "httpStatus": 422
+            }
+          }
+        }
+      },
+      "scenarios": [
+        {
+          "key": "happy.path",
+          "requests": [
+            {
+              "fuzzing": true,
+              "$ref": "#/operations/UpdateCurrentUser/request"
+            }
+          ],
+          "fuzzing": true
+        }
+      ]
+    }
+  },
+  "authenticationDetails": [
+    {
+      "Token": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Authorization",
+        "default": "Token",
+        "credentials": {
+          "Token": {
+            "credential": "{{Token}}",
+            "description": "Token security"
+          }
+        }
+      }
+    }
+  ]
 }

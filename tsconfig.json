@@ -1,7 +1,22 @@
 {
-  "files": [],
+  // "files": [],
+  // files：用于精确列出要编译的文件。你明确告诉 TypeScript 需要编译哪些文件。
+
   "references": [
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }
-  ]
+  ],
+
+  "include": ["src/**/*", "test/**/*"],
+  // include：用于指定文件夹或者通配符模式，表示哪些文件需要被 TypeScript 编译。
+
+  "compilerOptions": {
+    "moduleResolution": "node", // 使用 Node.js 模块解析
+    // 用于定义编译器如何处理你的代码。
+    "types": ["vitest/globals"],
+    // types 字段用来指定哪些全局类型声明应该被加载。
+    // 告知 TypeScript 使用 vitest 提供的全局类型定义，从而使得 describe、it、expect 等函数可以在测试文件中全局可用。
+    "target": "ES2015",
+    "lib": ["ES2015", "DOM"] // 引入 ES2015 和 DOM 库
+  }
 }
