@@ -1,0 +1,3 @@
+apis:
+  api_docs/openapi.yml:
+    alias: realworld-conduit-api
