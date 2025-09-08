@@ -17,6 +17,10 @@
     // types 字段用来指定哪些全局类型声明应该被加载。
     // 告知 TypeScript 使用 vitest 提供的全局类型定义，从而使得 describe、it、expect 等函数可以在测试文件中全局可用。
     "target": "ES2015",
-    "lib": ["ES2015", "DOM"] // 引入 ES2015 和 DOM 库
+    "lib": ["ES2015", "DOM"], // 引入 ES2015 和 DOM 库
+    "baseUrl": ".", // 很重要
+    "paths": {
+      "@/*": ["src/*"] // 让 @ 指向 src
+    }
   }
 }
