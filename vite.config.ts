@@ -1,13 +1,35 @@
 import { defineConfig } from 'vitest/config'
 import tailwindcss from "@tailwindcss/vite";
 import vue from '@vitejs/plugin-vue'
+import Components from "unplugin-vue-components/vite";
+import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [vue(), tailwindcss()],
+  plugins: [
+    vue(),
+    tailwindcss(),
+    Components({
+      resolvers: [ElementPlusResolver()], // 自动导入 Element Plus 组件
+    }),
+  ],
   test: {
+    setupFiles: "./vitest.setup.ts",
     globals: true, // 允许 describe/it/expect 全局可用
-    environment: "jsdom", // Vue 组件测试需要 DOM 环境
+    environment: "node", // Vue 组件测试需要 DOM 环境, mock 接口测试需要 node 环境
+    coverage: {
+      reporter: ["text", "json", "html"], // 配置代码覆盖率报告
+    },
+    include: ["test/**/*.test.ts"],
+  },
+  server: {
+    proxy: {
+      "/api": {
+        target: "https://api.realworld.show/api",
+        changeOrigin: true,
+        // rewrite: (path) => path.replace(/^\/api/, "/api"),
+      },
+    },
   },
 });
 /**
