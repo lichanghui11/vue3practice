@@ -1,10 +1,10 @@
 import { http } from '../utils/http.ts'
 
 // Login for existing user
-export const login = (data: {email: string, password: string}) => http.post('/users/login', data)
+export const getLogin = (data: {username: string, password: string}) => http.post('/users/login', data)
 
 // Register a user
-export const register = (data: {username: string, email: string, password: string}) => http.post('/users', data)
+export const getRegister = (data: {username: string, email: string, password: string}) => http.post('/users', data)
 
 // Get the currently logged in user
 export const getCurrentUser = () => http.get('/user',{AuthRequired: true})

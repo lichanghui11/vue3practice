@@ -22,6 +22,15 @@ export default defineConfig({
     },
     include: ["test/**/*.test.ts"],
   },
+  server: {
+    proxy: {
+      "/api": {
+        target: "https://api.realworld.show/api",
+        changeOrigin: true,
+        // rewrite: (path) => path.replace(/^\/api/, "/api"),
+      },
+    },
+  },
 });
 /**
  *  如果只写 smoke test（简单的逻辑测试），可以不加这个 test 字段。

@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- 顶部 Banner -->
-    <div class="h-[180px] bg-[#5db85b] flex flex-col items-center justify-around text-white">
+    <div v-if="!isLoggedIn" class="h-[180px] bg-[#5db85b] flex flex-col items-center justify-around text-white">
       <p class="font-bold text-7xl">conduit</p>
       <p class="text-2xl">A place to share your Angular knowledge.</p>
     </div>
@@ -11,24 +11,18 @@
       <!-- 左侧 Feed -->
       <div class="flex-1 min-h-screen">
         <el-menu
-          :default-active="activeKey"
-          class="el-menu-demo"
+          :router="true"
+          :default-active="$route.path"
+          class=""
           mode="horizontal"
           :ellipsis="false"
-          @select="handleSelect"
-          :key="activeKey"
         >
-          <el-menu-item index="your">Your Feed</el-menu-item>
-          <el-menu-item index="global">Global Feed</el-menu-item>
+          <el-menu-item index="/personal-feed">Your Feed</el-menu-item>
+          <el-menu-item index="/global-feed">Global Feed</el-menu-item>
         </el-menu>
 
         <div class="mt-4">
-          <div v-if="activeKey === 'your'">
-            <YourFeed :datas="mockArticles" />
-          </div>
-          <div v-else-if="activeKey === 'global'">
-            <GlobalFeed :datas="mockArticles" />
-          </div>
+          <router-view />
         </div>
       </div>
 
@@ -51,15 +45,12 @@
   </div>
 </template>
 <script setup lang="ts">
-import GlobalFeed from './GlobalFeed.vue'
-import YourFeed from './YourFeed.vue'
-import { ref } from 'vue'
+import { storeToRefs } from 'pinia'
+import { useAuthStore } from '../store/auth'
 import { type Article } from '../types'
 
-const activeKey = ref<'your' | 'global'>('global')
-function handleSelect(key: 'your' | 'global') {
-  activeKey.value = key  
-}
+const auth = useAuthStore()
+const { user, isLoggedIn } = storeToRefs(auth)
 
 const tags = [
   "ai", "api", "architecture", "backend",

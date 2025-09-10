@@ -22,11 +22,15 @@ declare module 'vue' {
     GlobalFeed: typeof import('./src/components/GlobalFeed.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     Home: typeof import('./src/components/Home.vue')['default']
+    Layout: typeof import('./src/components/Layout.vue')['default']
     Login: typeof import('./src/components/Login.vue')['default']
+    Me: typeof import('./src/components/Me.vue')['default']
     Navbar: typeof import('./src/components/Navbar.vue')['default']
+    NewArticle: typeof import('./src/components/NewArticle.vue')['default']
     Register: typeof import('./src/components/Register.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Setting: typeof import('./src/components/Setting.vue')['default']
     YourFeed: typeof import('./src/components/YourFeed.vue')['default']
   }
 }

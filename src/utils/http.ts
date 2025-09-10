@@ -31,10 +31,6 @@ http.interceptors.request.use(config => {
 })
 
 http.interceptors.response.use(response => {
-  const token = response.headers['Authorization']
-  if (token) {
-    setToken(token)
-  }
   return response
 }, error => { 
   // 这里根据数据的返回结构处理 401 422
@@ -43,7 +39,6 @@ http.interceptors.response.use(response => {
     // No authorization
     ElMessage.error('请重新登录')
     removeToken()
-    window.location.href = '/login'
   } else if (status === 422) {
     // Wrong data format
     ElMessage.warning('数据格式错误！')
